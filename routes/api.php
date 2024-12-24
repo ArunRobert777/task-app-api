@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\TaskController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\WorkspaceController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/user', function (Request $request) {
@@ -17,3 +17,7 @@ Route::controller(AuthController::class)->group(function () {
 Route::resource('tasks', TaskController::class)
     ->except(['create', 'show'])
     ->middleware('auth:sanctum');
+
+Route::post('workspace/create', [WorkspaceController::class, 'create'])
+    ->middleware('auth:sanctum')
+    ->name('workspace.create');
